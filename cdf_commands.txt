@@ -1,0 +1,63 @@
+composer create-project laravel/laravel socialnetwork "~5.0.0" --prefer-dist
+
+composer require intervention/image 
+
+php artisan migrate
+
+/***** FORM *****/
+add "illuminate/html": "5.*" to composer.json to require section 
+
+add 'Illuminate\Html\HtmlServiceProvider', to providers in app.php
+add 'Form'		=> 'Illuminate\Html\FormFacade', 
+	'HTML'    	=> 'Illuminate\Html\HtmlFacade', to aliases in app.php
+	
+composer update "illuminate/html": "5.*"
+
+composer dump-autoload -o
+/***** FORM *****/
+
+/***** FORM VALIDATION RULES *****/
+php artisan make:request BrandStoreRequest
+php artisan make:request BrandProductStoreRequest
+php artisan make:request ProductStoreRequest
+php artisan make:request UserStoreRequest
+php artisan make:request ProductTypeStoreRequest
+php artisan make:request AnnouncementStoreRequest
+php artisan make:request EditorialStoreRequest
+php artisan make:request EventStoreRequest
+/***** FORM VALIDATION RULES *****/
+
+
+/***** MODELS AND CONTROLLERS *****/
+php artisan make:controller AdminController
+
+php artisan make:controller UserController
+
+php artisan make:controller BrandController
+php artisan make:model Models/Brand
+
+php artisan make:controller BrandProductController
+php artisan make:model Models/BrandProduct
+
+php artisan make:controller ProductController
+php artisan make:model Models/Product
+
+php artisan make:controller ProductTypeController
+php artisan make:model Models/ProductType
+
+php artisan make:controller AnnouncementController
+php artisan make:model Models/Announcement
+
+php artisan make:controller EditorialController
+php artisan make:model Models/Editorial
+
+php artisan make:controller EventController
+php artisan make:model Models/Event
+
+php artisan make:model Models/User
+/***** MODELS AND CONTROLLERS *****/
+
+ADD HeaderComposer.php to app\Composers\
+ADD 'App\Providers\ComposerServiceProvider', to config\app.php
+
+php artisan make:migration create_brand_products_table
